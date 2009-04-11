@@ -28,7 +28,7 @@ class LastfmTagger(object):
         self.info = {"Track" : track, "Artist" : artist, "Album" : album }
         self.username = parent.username
         self.sk = parent.session_key
-        self.wTree = gtk.glade.XML(parent.GLADE['tag'])
+        self.wTree = gtk.glade.XML(parent.GLADE['cache'])
         self.fill_combo_box()
         self.prepare_treeview("popular_treeview")
         self.prepare_treeview("your_treeview")
@@ -36,7 +36,7 @@ class LastfmTagger(object):
         self.buffer.connect("changed", self.sanitise_tags)
         self.set_tag_info(None)
         
-        self.wTree.get_widget("window").show()
+        self.wTree.get_widget("tag_window").show()
         self.wTree.signal_autoconnect(self)
     
     
@@ -147,4 +147,4 @@ class LastfmTagger(object):
         self.wTree.get_widget("tag_info").set_text(_("Tags sent"))
     
     def on_window_destroy(self, widget):
-        self.wTree.get_widget("window").destroy()
+        self.wTree.get_widget("tag_window").destroy()
