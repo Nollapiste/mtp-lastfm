@@ -17,6 +17,8 @@
 
 import gtk
 import pygtk
+import gobject
+
 import webservices
 import localisation
 
@@ -34,9 +36,11 @@ class LastfmTagger(object):
         self.prepare_treeview("your_treeview")
         self.buffer = self.wTree.get_widget("tags").get_buffer()
         self.buffer.connect("changed", self.sanitise_tags)
+
         self.set_tag_info(None)
         
         self.wTree.get_widget("tag_window").show()
+
         self.wTree.signal_autoconnect(self)
     
     
@@ -65,7 +69,8 @@ class LastfmTagger(object):
             self.wTree.get_widget("tag_info").set_text(_("Tagging %s: %s by %s") %
                                                        (cur, self.info[cur],
                                                        self.info['Artist']))
-        
+        while gtk.events_pending():
+            gtk.main_iteration()
         #get popular tags and tags that the user has already used
         conn = webservices.LastfmWebService()
         #we will keep the user tags since they dont change
@@ -88,6 +93,8 @@ class LastfmTagger(object):
         for tag in popular_tags:
             liststore.append([tag])
         self.wTree.get_widget("popular_treeview").set_model(liststore)
+        
+        
         
     def prepare_treeview(self, treeview):
         if treeview == "popular_treeview":
