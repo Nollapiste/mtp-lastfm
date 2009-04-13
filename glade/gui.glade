@@ -35,6 +35,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_check_device_clicked"/>
                     <child>
                       <widget class="GtkHBox" id="hbox9">
                         <property name="visible">True</property>
@@ -100,6 +101,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_scrobble_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox3">
                                 <property name="visible">True</property>
@@ -109,13 +111,15 @@
                                     <property name="pixbuf">mtp-lastfm.png</property>
                                   </widget>
                                   <packing>
+                                    <property name="expand">False</property>
+                                    <property name="padding">5</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="scrobble_label">
+                                  <widget class="GtkLabel" id="scrobble_name">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Scrobble</property>
+                                    <property name="label" translatable="yes">Scrobble tracks</property>
                                   </widget>
                                   <packing>
                                     <property name="position">1</property>
@@ -133,6 +137,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_tracks_button_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox5">
                                 <property name="visible">True</property>
@@ -142,16 +147,25 @@
                                     <property name="pixbuf">heart.png</property>
                                   </widget>
                                   <packing>
+                                    <property name="padding">5</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="love_label">
+                                  <widget class="GtkLabel" id="love_name">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">Loved tracks</property>
                                   </widget>
                                   <packing>
                                     <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="loved_label">
+                                    <property name="visible">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -164,10 +178,11 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkButton" id="banned">
+                          <widget class="GtkButton" id="ban">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_tracks_button_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox6">
                                 <property name="visible">True</property>
@@ -177,16 +192,25 @@
                                     <property name="pixbuf">banned.png</property>
                                   </widget>
                                   <packing>
+                                    <property name="padding">5</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="ban_label">
+                                  <widget class="GtkLabel" id="ban_name">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">Banned tracks</property>
                                   </widget>
                                   <packing>
                                     <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="banned_label">
+                                    <property name="visible">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -205,6 +229,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_tracks_button_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox4">
                                 <property name="visible">True</property>
@@ -214,16 +239,25 @@
                                     <property name="pixbuf">cache.png</property>
                                   </widget>
                                   <packing>
-                                    <property name="position">0</property>
+                                    <property name="position">-1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="cache_name">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Tracklist</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="position">6</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <widget class="GtkLabel" id="cache_label">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Tracklist</property>
                                   </widget>
                                   <packing>
-                                    <property name="position">1</property>
+                                    <property name="pack_type">end</property>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -240,6 +274,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_options_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox7">
                                 <property name="visible">True</property>
@@ -251,13 +286,15 @@
                                     <property name="icon-size">3</property>
                                   </widget>
                                   <packing>
+                                    <property name="expand">False</property>
+                                    <property name="padding">5</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="options_label">
+                                  <widget class="GtkLabel" id="options_name">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Events</property>
+                                    <property name="label" translatable="yes">Settings</property>
                                   </widget>
                                   <packing>
                                     <property name="position">1</property>
@@ -277,6 +314,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <signal name="clicked" handler="on_about_clicked"/>
                             <child>
                               <widget class="GtkHBox" id="hbox10">
                                 <property name="visible">True</property>
@@ -287,11 +325,13 @@
                                     <property name="icon-size">3</property>
                                   </widget>
                                   <packing>
+                                    <property name="expand">False</property>
+                                    <property name="padding">5</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="about_label">
+                                  <widget class="GtkLabel" id="about_name">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">About</property>
                                   </widget>
